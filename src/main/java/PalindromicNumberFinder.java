@@ -1,15 +1,8 @@
 public class PalindromicNumberFinder {
     private int num;
 
-
-    //added variables
-    private String original = "";
-    private String reverse = "";
-    private int reversedInt = 0;
-    private int temp;
-    private int next = 0;
-    private boolean isPalindrome;
-  
+    //added variable
+    //private int reversedInt = 0;
 
     // constructor
     public PalindromicNumberFinder(int num){
@@ -22,26 +15,41 @@ public class PalindromicNumberFinder {
     }
 
     // this method should find the next palindromic number
-    
-    //test this/fix this cuz this one takes too long to output
+  
     public int searchForPalindromicNum(int num){
-         next = num + 1;
-         while(next != num && isPalindrome != true){
-         next = next + 10000;
+         int next = num;
+         boolean isPalindrome = false;
+         //System.out.println(isPalindrome);
+         while(isPalindrome == false){
+
+         next = next + 1;
+
+         //System.out.println(next);
+
          isPalindrome = testPalindromicNum(next);
+
          //System.out.println(isPalindrome);
          }
+
         return next - num;
          
     }
 
     // this is a helper method for searchForPalindromicNum. It's purpose is to test if a number is actually a palindrome
-
     public boolean testPalindromicNum(int num){
-      reverseNum(num);
-      if(original.equals(reverse) && num == reversedInt){
+      
+      //System.out.println("tp" + num);
+
+      int reverse = Integer.parseInt(reverseNum(num));
+      if(num == reverse){
+
+        //System.out.println("true");
+
         return true;
       }else{
+
+        //System.out.println("false");
+
         return false;
       } 
 
@@ -49,25 +57,19 @@ public class PalindromicNumberFinder {
 
     // this is a helper method for testPalindromicNum. It should reverse the number and return it.
     public String reverseNum(int num){
-      //this for loop is technically uneccesary, if converted to return type int.
+      
+      String original = "";
       original = original + num;
+      String reverse = "";
+
       int length = original.length() - 1;
-      //reverses the number as a string
+
       for(int i = length; i >= 0 ; i--){
-        
         reverse = reverse + original.charAt(i);
       }
 
-      //reverses the number as an int as well;
-      while (num != 0){
-        temp = num % 10;
-        reversedInt = reversedInt * 10 + temp;
-        num /= 10;
-      }
-
-      //test int reversing
-      //System.out.println(reversedInt);
       return reverse;
+
     }
 
 
